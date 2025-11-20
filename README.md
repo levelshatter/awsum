@@ -61,9 +61,7 @@ awsum instance shell --name website "df -h"
 
 Basic app deployment:
 
-**Note:** This is actually an exact replica of the demo deployment done by the awsum GitHub Action workflow (across two t2.nano instances) [Awsum Demo Deployment](https://awsumdemo.levelshatter.com/).
-
-**Note 2:** When using awsum in your CI/CD platforms, please remember to properly secure access to awsum, access to your instances, and the users awsum will authenticate as. You do not want to give fully privileged RCE to anyone making code changes...
+**Note:** When using awsum in your CI/CD platforms, please remember to properly secure access to awsum, access to your instances, and the users awsum will authenticate as. You do not want to give fully privileged RCE to anyone making code changes...
 
 ```shell
 awsum instance shell --name "awsum-demo" -p "echo \"
