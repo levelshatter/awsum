@@ -1,6 +1,6 @@
 # awsum
 
-a cross-platform CLI tool for rapid debugging & development with AWS infrastructure
+awsm is an easy to use, cross-platform CLI tool that was made for rapid fiddling of AWS infrastructure
 
 ## Installation
 *Required:* [Go 1.25](https://go.dev/dl)
