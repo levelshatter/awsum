@@ -1,6 +1,13 @@
 # awsum
 
-awsm is an easy to use, cross-platform CLI tool that was made for rapid fiddling of AWS infrastructure
+awsum is an easy-to-use, cross-platform CLI tool made for rapid fiddling of AWS infrastructure.
+
+features:
+* classic SSH-based instance interaction
+  * by using SSH, awsum supports all architectures and instance types unlike using AWS SSM
+  * automatic SSH key management and selection when connecting to instances
+* one-liners for setting up production ready load-balanced services across instances without a web of complexity
+* (coming) interaction with instance docker daemons using SSH tunneling
 
 ## Installation
 *Required:* [Go 1.25](https://go.dev/dl)
