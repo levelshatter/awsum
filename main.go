@@ -45,7 +45,7 @@ func main() {
     cmd := &cli.Command{
         Name:        "awsum",
         Usage:       "a fun CLI tool for working with AWS infra",
-        Description: "awsum allows you to rapidly develop with your own infra via the command line",
+        Description: "awsum allows you to rapidly develop with your own AWS infra via the command line",
         Commands: []*cli.Command{
             {
                 Name: "configure",
@@ -67,7 +67,7 @@ func main() {
                                 OnlyOnce: true,
                                 Validator: func(s string) error {
                                     if s != "pretty" && s != "csv" {
-                                        return fmt.Errorf("invalid format, must be pretty or csv")
+                                        return errors.New("invalid format, must be pretty or csv")
                                     }
 
                                     return nil
@@ -203,7 +203,7 @@ func main() {
                             },
                             &cli.BoolFlag{
                                 Name:     "private",
-                                Usage:    "if your load balancer and domain records should be private",
+                                Usage:    "if your load balancer and domain records should be private (not visible to the internet)",
                                 OnlyOnce: true,
                             },
                         },
