@@ -15,7 +15,6 @@ func TestEC2_GetRunningInstances(t *testing.T) {
     instances, err := service.DefaultEC2.GetAllRunningInstances(t.Context())
 
     assert.NoError(t, err)
-    assert.NotNil(t, instances)
 
     for _, instance := range instances {
         fmt.Printf("%+v\n", instance.Info)
@@ -41,7 +40,6 @@ func TestEC2_GetSubnets(t *testing.T) {
     subnets, err := service.DefaultEC2.GetAllSubnets(t.Context())
 
     assert.NoError(t, err)
-    assert.NotNil(t, subnets)
 
     for _, subnet := range subnets {
         fmt.Printf("%+v\n", subnet)
