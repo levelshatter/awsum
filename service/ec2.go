@@ -5,6 +5,7 @@ import (
     "errors"
     "fmt"
     "io"
+    "log/slog"
     "os"
     "os/signal"
     "path"
@@ -330,18 +331,20 @@ func (i *Instance) AttachShell(sshUser string) error {
     session.Stderr = os.Stderr
     session.Stdin = os.Stdin
 
-    fd := int(os.Stdin.Fd())
+    stdinFD := int(os.Stdin.Fd())
+    stdoutFD := int(os.Stdout.Fd())
 
     var (
         width  = 80
         height = 24
-        inTerm = term.IsTerminal(fd)
+        inTerm = term.IsTerminal(stdoutFD)
     )
 
     if inTerm {
-        width, height, err = term.GetSize(fd)
+        width, height, err = term.GetSize(stdoutFD)
 
         if err != nil {
+            slog.Warn("failed to get current terminal dimensions from stdout", "err", err)
             width, height = 80, 24
         }
     }
@@ -353,11 +356,11 @@ func (i *Instance) AttachShell(sshUser string) error {
     }
 
     if inTerm {
-        oldState, err := term.MakeRaw(fd)
+        oldState, err := term.MakeRaw(stdinFD)
 
         if err == nil && oldState != nil {
             defer func() {
-                if err = term.Restore(fd, oldState); err != nil {
+                if err = term.Restore(stdinFD, oldState); err != nil {
                     fmt.Printf("failed to restore old local terminal state while disconnecting from instance: %s", err)
                 }
             }()
